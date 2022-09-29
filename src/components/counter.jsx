@@ -4,47 +4,39 @@ class Counter extends Component {
     state = {
         count: 1,
         imageUrl: "https://picsum.photos/200",
-        tags: ["h1", "h2", "h3"],
+        tags: ["h1"],
     };
 
-    styles = {
-        fontSize: 20,
-        fontWeight: "bold",
-    };
+    getListText() {
+        return this.state.tags.length === 0 ? (
+            "No tags"
+        ) : (
+            <ul>
+                {this.state.tags.map((tag) => (
+                    <li key={tag}> {tag} </li>
+                ))}
+            </ul>
+        );
+    }
 
     render() {
         return (
             <React.Fragment>
-                <header>
-                    <img src={this.state.imageUrl} alt="not found" />
-                    <span className={this.getBadgeClass()} style={this.styles}>
-                        {this.formatCount()}
-                    </span>
-                </header>
+                <div> {this.getListText()} </div>
+
+                <h2> OR </h2>
                 <div>
-                    <button className="btn btn-secondary btn-sm">
-                        Increment
-                    </button>
-                    <ul>
-                        {this.state.tags.map((tag) => (
-                            <li key={tag}>{tag}</li>
-                        ))}
-                    </ul>
+                    {this.state.tags.length === 0 && "No tags"}
+                    {
+                        <ul>
+                            {this.state.tags.map((tag) => (
+                                <li key={tag}> {tag} </li>
+                            ))}
+                        </ul>
+                    }
                 </div>
             </React.Fragment>
         );
-    }
-
-    formatCount() {
-        const { count } = this.state;
-        return count === 0 ? "Zero" : count;
-    }
-
-    getBadgeClass() {
-        const { count } = this.state;
-        return count === 0
-            ? "badge badge-warning m-5"
-            : "badge badge-primary m-5";
     }
 }
 
