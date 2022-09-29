@@ -4,12 +4,15 @@ class Counter extends Component {
     state = {
         count: 1,
         imageUrl: "https://picsum.photos/200",
-        tags: ["h1", "h2", "h3"],
     };
 
     styles = {
         fontSize: 20,
         fontWeight: "bold",
+    };
+
+    handleIncrement = () => {
+        console.log("Increment Clicked");
     };
 
     render() {
@@ -22,14 +25,12 @@ class Counter extends Component {
                     </span>
                 </header>
                 <div>
-                    <button className="btn btn-secondary btn-sm">
+                    <button
+                        onClick={this.handleIncrement}
+                        className="btn btn-secondary btn-sm"
+                    >
                         Increment
                     </button>
-                    <ul>
-                        {this.state.tags.map((tag) => (
-                            <li key={tag}>{tag}</li>
-                        ))}
-                    </ul>
                 </div>
             </React.Fragment>
         );
